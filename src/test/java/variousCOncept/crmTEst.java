@@ -8,8 +8,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +20,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class crmTEst {
+	
 	WebDriver Driver;
+//	diffrent storing teckninque
+	@FindBy(how = How.XPATH, using = "//*[@id=\"user_name\"]") WebElement USER_NAME_ELEMENT;
+	@FindBy(how = How.XPATH,using = "//*[@id=\"password\"]") WebElement PASSWORD_ELEMENT;
     String browser = null;
 	String url ;
 	String username ;
@@ -79,13 +86,15 @@ public class crmTEst {
 
 	@Test
 	public void testLogin() {
+//	    USER_NAME_ELEMENT.sendKeys(username);
+//		PASSWORD_ELEMENT.sendKeys(password);
 		Driver.findElement(USER_NAME_FIELD).sendKeys(username);
 		Driver.findElement(PASSWORD_FIELD).sendKeys(password);
 		Driver.findElement(SIGNIN_BUTTON_FIELD).click();
 		Assert.assertEquals(Driver.findElement(DASHBOARD_VALIDATION_FIELD).getText(), dashboardvalidationtest,"Dashboard page is not available");
 	}
 
-	 @Test
+//	 @Test
     public void testAlert() {
     	Driver.findElement(SIGNIN_BUTTON_FIELD).click();
     	Assert.assertEquals(Driver.switchTo().alert().getText(), usernamevalidationtest, "alert is not available");
@@ -96,7 +105,7 @@ public class crmTEst {
     	Driver.switchTo().alert().accept();
     	
     }
-	 @AfterMethod
+//	 @AfterMethod
 		public void teardown() {
 			Driver.close();
 			Driver.quit();

@@ -5,10 +5,9 @@
     <classes>
       <class name="variousCOncept.crmTEst">
         <methods>
-          <include name="teardown"/>
-          <include name="testAlert"/>
-          <include name="init"/>
+          <include name="testLogin"/>
           <include name="readConfig"/>
+          <include name="init"/>
         </methods>
       </class> <!-- variousCOncept.crmTEst -->
     </classes>
